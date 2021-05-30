@@ -1,28 +1,29 @@
+'use strict'
 
-(function() {
-//Select the input element
-const form = document.querySelector('#message-form')
-//Set up Submit Button
-form.addEventListener('submit', function(e){
-    // prevent the form's default submission action
-    e.preventDefault()
-    //Get user's input from from
-    const message = document.querySelector('#message')
-    const feedback = document.querySelector('.feedback')
-    const messageContent = document.querySelector('.message-content')
+const form = document.querySelector("#message-form");
+const message = document.querySelector("#message");
+const messageContent = document.querySelector(".message-content");
+const feedback = document.querySelector(".feedback");
 
-    if (message.value === ''){
-        feedback.classList.add('show')
+
+
+function handleSubmit(event){
+    event.preventDefault();
+
+    if(message.value === ''){
+        feedback.classList.add("show");
         setTimeout(function(){
-        feedback.classList.remove('show')
-        }, 2000)
-    } else {
-        //Change message content and clear the message input
-        messageContent.textContent = message.value
-        message.value = ''
+            feedback.classList.remove("show")
+        }, 2000);
+    } else{
+        messageContent.textContent = message.value;
+        message.value = '';
     }
-})
-})()
+}
 
+function init(){
+    form.addEventListener("submit",handleSubmit);
+}
 
+init();
 
